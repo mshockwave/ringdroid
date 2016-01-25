@@ -277,19 +277,19 @@ public class RingdroidEditActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.action_save:
+        int i = item.getItemId();
+        if (i == R.id.action_save) {
             onSave();
             return true;
-        case R.id.action_reset:
+        } else if (i == R.id.action_reset) {
             resetPositions();
             mOffsetGoal = 0;
             updateDisplay();
             return true;
-        case R.id.action_about:
+        } else if (i == R.id.action_about) {
             onAbout(this);
             return true;
-        default:
+        } else {
             return false;
         }
     }
@@ -1456,26 +1456,24 @@ public class RingdroidEditActivity extends Activity
         final Handler handler = new Handler() {
                 public void handleMessage(Message response) {
                     int actionId = response.arg1;
-                    switch (actionId) {
-                    case R.id.button_make_default:
+                    if (actionId == R.id.button_make_default) {
                         RingtoneManager.setActualDefaultRingtoneUri(
-                            RingdroidEditActivity.this,
-                            RingtoneManager.TYPE_RINGTONE,
-                            newUri);
+                                RingdroidEditActivity.this,
+                                RingtoneManager.TYPE_RINGTONE,
+                                newUri);
                         Toast.makeText(
-                            RingdroidEditActivity.this,
-                            R.string.default_ringtone_success_message,
-                            Toast.LENGTH_SHORT)
-                            .show();
+                                RingdroidEditActivity.this,
+                                R.string.default_ringtone_success_message,
+                                Toast.LENGTH_SHORT)
+                                .show();
                         finish();
-                        break;
-                    case R.id.button_choose_contact:
+
+                    } else if (actionId == R.id.button_choose_contact) {
                         chooseContactForRingtone(newUri);
-                        break;
-                    default:
-                    case R.id.button_do_nothing:
+
+                    } else {
                         finish();
-                        break;
+
                     }
                 }
             };

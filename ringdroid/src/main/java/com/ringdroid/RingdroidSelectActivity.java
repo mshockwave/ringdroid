@@ -269,18 +269,18 @@ public class RingdroidSelectActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-        case R.id.action_about:
+        int i = item.getItemId();
+        if (i == R.id.action_about) {
             RingdroidEditActivity.onAbout(this);
             return true;
-        case R.id.action_record:
+        } else if (i == R.id.action_record) {
             onRecord();
             return true;
-        case R.id.action_show_all_audio:
+        } else if (i == R.id.action_show_all_audio) {
             mShowAll = true;
             refreshListView();
             return true;
-        default:
+        } else {
             return false;
         }
     }
@@ -499,7 +499,8 @@ public class RingdroidSelectActivity
         try {
             Intent intent = new Intent(Intent.ACTION_EDIT, Uri.parse("record"));
             intent.putExtra("was_get_content_intent", mWasGetContentIntent);
-            intent.setClassName( "com.ringdroid", "com.ringdroid.RingdroidEditActivity");
+            //intent.setClassName( "com.ringdroid", "com.ringdroid.RingdroidEditActivity");
+            intent.setClass(this, RingdroidEditActivity.class);
             startActivityForResult(intent, REQUEST_CODE_EDIT);
         } catch (Exception e) {
             Log.e("Ringdroid", "Couldn't start editor");
@@ -513,7 +514,8 @@ public class RingdroidSelectActivity
         try {
             Intent intent = new Intent(Intent.ACTION_EDIT, Uri.parse(filename));
             intent.putExtra("was_get_content_intent", mWasGetContentIntent);
-            intent.setClassName( "com.ringdroid", "com.ringdroid.RingdroidEditActivity");
+            //intent.setClassName( "com.ringdroid", "com.ringdroid.RingdroidEditActivity");
+            intent.setClass(this, RingdroidEditActivity.class);
             startActivityForResult(intent, REQUEST_CODE_EDIT);
         } catch (Exception e) {
             Log.e("Ringdroid", "Couldn't start editor");

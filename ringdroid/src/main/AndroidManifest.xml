@@ -30,22 +30,14 @@
 
     <supports-screens android:anyDensity="true" />
 
-    <application android:label="@string/ringdroid_app_name"
-                 android:icon="@drawable/ringdroidlogo"
-                 android:theme="@android:style/Theme.Holo"
-                 android:largeHeap="true"
-                 android:allowBackup="true">
+    <application
+         android:largeHeap="true"
+         android:allowBackup="true">
 
 
         <!-- Main activity that's launched when the user opens Ringdroid. -->
         <activity android:name="RingdroidSelectActivity"
-                  android:label="@string/main_activity_label">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+                android:label="@string/main_activity_label">
         </activity>
 
 	<!-- Activity for actually editing a particular audio file.
@@ -56,6 +48,10 @@
                   android:configChanges="orientation|screenSize|keyboardHidden"
                   android:windowSoftInputMode="adjustResize"
                   android:hardwareAccelerated="true">
+            <intent-filter android:label="@string/edit_intent">
+                <action android:name="android.intent.action.EDIT" />
+                <data android:mimeType="audio/*" />
+            </intent-filter>
         </activity>
 
 	<!-- Activity for choosing a contact to assign a ringtone to. -->

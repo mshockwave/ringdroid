@@ -1,1 +1,1 @@
-include ':ringdroid'
+include ':ringdroid', ':app'
